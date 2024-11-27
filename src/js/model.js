@@ -6,7 +6,7 @@ export const State = {
   quizTotalCount: 0,
 }
 //loading data from server
-export const loadData = async function () {
+export const loadData = async function (index) {
   try {
     const res = await fetch(`${URL}?apiKey=${KEY}&limit=10`)
     const data = await res.json()
@@ -27,12 +27,22 @@ export const loadData = async function () {
       })
     })
     State.quizTotalCount = data.length
-    currentQuiz()
+    console.log(State)
+    currentQuiz(index)
   } catch (e) {
     throw e
   }
 }
 
-const currentQuiz = function () {
-  State.currentQuiz = State.quiz[0]
+export const currentQuiz = function (index) {
+  if (State.quiz.length === 0) return
+  State.currentQuiz = State.quiz[index]
+  console.log(State)
+}
+
+//return answer ture or false
+export const checkAnswer = (data) => {
+  console.log(data)
+  const answer = Object.entries(State.currentQuiz.correct_answers)[data][1]
+  return answer
 }
