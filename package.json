@@ -1,0 +1,14 @@
+{
+  "name": "quizapp",
+  "version": "1.0.0",
+  "description": "Quiz app",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "Zaw Lwin Phyo",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.13.0"
+  }
+}

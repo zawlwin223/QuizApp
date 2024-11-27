@@ -1,0 +1,64 @@
+@layer quizApp {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a1a1d;
+    color: white;
+  }
+  .quiz {
+    /* display: flex;
+    flex-direction: column; */
+    width: 500px;
+    padding: 20px;
+    background-color: #6a1e55;
+    border-radius: 10px;
+    .timer {
+      margin-block: 15px;
+    }
+    .question {
+      h2 {
+        margin-bottom: 20px;
+        margin-left: 0px;
+      }
+      ul {
+        margin: 0;
+        color: black;
+        li {
+          color: white;
+          list-style: none;
+          border: 1px solid white;
+          padding: 15px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+        .correct {
+          background-color: green;
+          /* opacity: 0.5; */
+          /* color: black; */
+        }
+        .wrong {
+          background-color: red;
+          /* opacity: 0.5; */
+        }
+      }
+    }
+    button {
+      cursor: pointer;
+      padding: 10px 30px;
+      margin: auto;
+      background-color: #1a1a1d;
+      color: white;
+      border: none;
+      margin-top: 10px;
+      display: block;
+    }
+  }
+}
