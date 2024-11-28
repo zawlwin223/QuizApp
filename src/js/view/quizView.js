@@ -4,6 +4,7 @@ const questionTitle = document.querySelector('.questionTitle')
 const answersParent = document.querySelector('.answers')
 const nextButton = document.querySelector('.nextButton')
 let timerCount = TIMER
+let interval
 
 export let currentQuizNum = 0
 export const render = function (quiz) {
@@ -18,7 +19,7 @@ export const render = function (quiz) {
 //generating markup for answers options
 const answerMarkup = function (answers) {
   const markupArr = Object.entries(answers).map((el) => {
-    return el[1] === null ? '' : `<li class="answer">${el[0]} : ${el[1]}</li>`
+    return el[1] === null ? '' : `<li class="answer ">${el[0]} : ${el[1]}</li>`
   })
 
   return markupArr.join('')
@@ -34,6 +35,10 @@ export const checkAnswersHandler = function (control) {
     //send clickIndex to controller to check if answer is right or wrong from model
     const answer = control(clickedIndex)
     changeAnswerUI(answer, e.target)
+    clearInterval(interval)
+    liElements.forEach((el) => {
+      el.classList.add('unclickable')
+    })
   })
 }
 const changeAnswerUI = function (answer, targetLi) {
@@ -41,6 +46,8 @@ const changeAnswerUI = function (answer, targetLi) {
 }
 export const nextButtonHandler = function (control) {
   nextButton.addEventListener('click', function () {
+    timerCount = TIMER
+    timerHandler(control)
     answersParent.innerHTML = ''
     currentQuizNum++
     control(currentQuizNum)
@@ -48,16 +55,23 @@ export const nextButtonHandler = function (control) {
 }
 
 //set timer
-export const timerHandler = function (control) {
-  setInterval(function () {
+export const timerHandler = function (control = '') {
+  timer.innerHTML = timerCount
+  interval = setInterval(function () {
     if (timerCount === 0) {
+      timerCount = TIMER
+      timer.innerHTML = timerCount
       answersParent.innerHTML = ''
       currentQuizNum++
       control(currentQuizNum, timerCount)
-      timerCount = TIMER
       return
     }
     timerCount--
     timer.innerHTML = timerCount
   }, 1000)
+}
+
+export const result = function (score) {
+  alert(`Your score: ${score}`)
+  window.location.reload()
 }

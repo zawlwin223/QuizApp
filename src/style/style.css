@@ -48,6 +48,9 @@
           background-color: red;
           /* opacity: 0.5; */
         }
+        .unclickable {
+          pointer-events: none;
+        }
       }
     }
     button {

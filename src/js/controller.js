@@ -8,7 +8,7 @@ const controlRenderQuestion = async function (quizNum) {
   console.log(currentQuiz)
   //render data
   quizView.render(currentQuiz)
-  //set timer
+  //set timer and change next quiz when time is up
   quizView.timerHandler(controlTimer)
 }
 
@@ -22,8 +22,7 @@ const controlCheckAnswer = function (index) {
 const changeNext = function (quizNum) {
   if (quizNum === model.State.quizTotalCount) {
     //render final result here
-    alert(`Your score is ${model.State.score}`)
-    controlRenderQuestion(0)
+    quizView.result(model.State.score)
   }
   //change current data in model
   model.currentQuiz(quizNum)

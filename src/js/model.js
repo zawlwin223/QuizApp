@@ -9,7 +9,7 @@ export const State = {
 //loading data from server
 export const loadData = async function (index) {
   try {
-    const res = await fetch(`${URL}?apiKey=${KEY}&limit=10`)
+    const res = await fetch(`${URL}?apiKey=${KEY}&limit=5`)
     const data = await res.json()
     data.forEach((quiz) => {
       State.quiz.push({
