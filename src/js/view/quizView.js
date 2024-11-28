@@ -1,11 +1,12 @@
-const timerParent = document.querySelector('.timer')
+import { TIMER } from '../config.js'
+const timer = document.querySelector('.timer')
 const questionTitle = document.querySelector('.questionTitle')
 const answersParent = document.querySelector('.answers')
 const nextButton = document.querySelector('.nextButton')
-const timer = 0
+let timerCount = TIMER
+
 export let currentQuizNum = 0
 export const render = function (quiz) {
-  console.log(quiz)
   const { question, answers } = quiz
   //rendering question
   questionTitle.textContent = question
@@ -36,15 +37,27 @@ export const checkAnswersHandler = function (control) {
   })
 }
 const changeAnswerUI = function (answer, targetLi) {
-  JSON.parse(answer)
-    ? targetLi.classList.add('correct')
-    : targetLi.classList.add('wrong')
+  answer ? targetLi.classList.add('correct') : targetLi.classList.add('wrong')
 }
-
 export const nextButtonHandler = function (control) {
   nextButton.addEventListener('click', function () {
     answersParent.innerHTML = ''
     currentQuizNum++
     control(currentQuizNum)
   })
+}
+
+//set timer
+export const timerHandler = function (control) {
+  setInterval(function () {
+    if (timerCount === 0) {
+      answersParent.innerHTML = ''
+      currentQuizNum++
+      control(currentQuizNum, timerCount)
+      timerCount = TIMER
+      return
+    }
+    timerCount--
+    timer.innerHTML = timerCount
+  }, 1000)
 }
